@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MediArchive</string>
+    <string name="registreren">Registreren</string>
+    <string name="inloggen">Inloggen</string>
+    <string name="wachtwoord">Wachtwoord</string>
+    <string name="email">Email</string>
+    <string name="logo">Logo</string>
+    <string name="brandname">MediArchive</string>
 </resources>
