@@ -6,4 +6,5 @@
     <string name="email">Email</string>
     <string name="logo">Logo</string>
     <string name="brandname">MediArchive</string>
+    <string name="username">Username</string>
 </resources>
