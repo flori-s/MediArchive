@@ -13,7 +13,7 @@ import java.sql.ResultSet
  */
 class DBController private constructor() {
     // Database connection details
-    private var host = "10.0.2.2" // Use IP address for localhost
+    private var host = "10.0.2.2" // Use IP address for localhost on emulator
     private var port = "8889" // MAMP's MySQL server runs on port 8889
     private var dbname = "hospitalDB" // Your database name
     private var user = "root" // Your username
