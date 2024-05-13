@@ -7,4 +7,17 @@
     <string name="logo">Logo</string>
     <string name="brandname">MediArchive</string>
     <string name="username">Username</string>
+    <string name="datum">Datum</string>
+    <string name="naam">Naam</string>
+    <string name="geslacht">Geslacht</string>
+    <string name="geboortedatum">Geboortedatum</string>
+    <string name="straat_huisnummer">Straat + huisnummer</string>
+    <string name="stad">Stad</string>
+    <string name="gebruikersnaam">Gebruikersnaam</string>
+    <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+    <string-array name="gender_items">
+        <item>M</item>
+        <item>F</item>
+        <item>Other</item>
+    </string-array>
 </resources>

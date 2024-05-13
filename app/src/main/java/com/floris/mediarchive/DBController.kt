@@ -47,10 +47,44 @@ class DBController private constructor() {
      * @param hasedPassword The hashed password of the user.
      * @return True if the user exists, false otherwise.
      */
-    fun checkUser(username: String, hasedPassword: String): Boolean {
-        val query = "SELECT * FROM account WHERE username = '$username' AND password = '$hasedPassword'"
+    fun checkCredentials(username: String, hasedPassword: String): Boolean {
+        val query =
+            "SELECT * FROM account WHERE username = '$username' AND password = '$hasedPassword'"
         val result = select(query)
         return result?.next() ?: false
+    }
+
+    fun checkUsername(username: String): Boolean {
+        val query = "SELECT * FROM account WHERE username = '$username'"
+        val result = select(query)
+        return result?.next() ?: false
+    }
+
+    fun checkEmail(email: String): Boolean {
+        val query = "SELECT * FROM account WHERE email = '$email'"
+        val result = select(query)
+        return result?.next() ?: false
+    }
+
+    fun registerUser(
+        name: String,
+        birthDate: String,
+        gender: String,
+        address: String,
+        username: String,
+        email: String,
+        password: String
+    ) {
+        val query =
+            "INSERT INTO person (name, birth_date, gender, address) VALUES ('$name', '$birthDate', '$gender', '$address')"
+        val query2 =
+            "INSERT INTO account (person_id ,username, email, password) VALUES (LAST_INSERT_ID(),'$username', '$email', '$password')"
+
+        if (insert(query) && insert(query2)) {
+            Log.d("DBController", "Person inserted")
+        } else {
+            Log.e("DBController", "Failed to insert person")
+        }
     }
 
     /**
