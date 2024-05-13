@@ -53,6 +53,7 @@
                 android:ems="10"
                 android:hint="@string/username"
                 android:inputType="text"
+                android:minHeight="48dp"
                 android:textColor="#000000" />
 
             <EditText
@@ -62,12 +63,13 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:autofillHints="password"
+                android:drawableEnd="@drawable/ic_info"
                 android:ems="10"
                 android:hint="@string/wachtwoord"
                 android:inputType="textPassword"
-                android:textColor="#000000"
-                android:drawableEnd="@drawable/ic_info"
-                android:onClick="showPasswordRequirements"/>
+                android:minHeight="48dp"
+                android:onClick="showPasswordRequirements"
+                android:textColor="#000000" />
 
         </LinearLayout>
 
@@ -90,7 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="@string/registreren" />
+                android:text="@string/registreren"
+                android:onClick="register"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

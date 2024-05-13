@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357">
+
+        <EditText
+            android:id="@+id/editTextName_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="name"
+            android:ems="10"
+            android:hint="@string/naam"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/textViewBirthDate_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/geboortedatum" />
+
+        <EditText
+            android:id="@+id/editTextDate_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:minHeight="48dp"
+            android:onClick="setupDatePicker"
+            android:text="@string/yyyy_mm_dd"
+            tools:ignore="TextFields" />
+
+        <TextView
+            android:id="@+id/textViewGender_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/geslacht" />
+
+        <Spinner
+            android:id="@+id/spinner_RegisterActivity_xml"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:textAlignment="viewStart" />
+
+        <EditText
+            android:id="@+id/editTextStreet_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="postalAddress"
+            android:ems="10"
+            android:hint="@string/straat_huisnummer"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/editTextCity_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="postalAddress"
+            android:ems="10"
+            android:hint="@string/stad"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/editTextUsername_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="username"
+            android:ems="10"
+            android:hint="@string/gebruikersnaam"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/editTextEmail_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
+
+        <TextView
+            android:id="@+id/textViewPassword_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wachtwoord" />
+
+        <EditText
+            android:id="@+id/editTextPassword_RegisterActivity_xml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="password"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registreren"
+            android:onClick="register"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

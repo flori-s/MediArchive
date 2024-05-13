@@ -8,7 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.floris.mediarchive.DBController
 import com.floris.mediarchive.R
-import com.floris.mediarchive.isValidEmail
 import com.floris.mediarchive.isValidPassword
 import com.floris.mediarchive.toSHA256
 
@@ -53,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                     val hashedPassword = passwordEditText.text.toString().toSHA256()
 
                     // Check if the user exists in the database
-                    if (db.checkUser(email, hashedPassword)) {
+                    if (db.checkCredentials(email, hashedPassword)) {
                         // Reset the failed attempts counter
                         failedAttempts = 0
                         editor.putBoolean("isBlocked", false)
@@ -99,5 +98,9 @@ class LoginActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         builder.show()
+    }
+
+    fun register(view: View) {
+        startActivity(Intent(this, RegisterActivity::class.java))
     }
 }
