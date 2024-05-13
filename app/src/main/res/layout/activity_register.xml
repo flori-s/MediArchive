@@ -26,7 +26,8 @@
             android:autofillHints="name"
             android:ems="10"
             android:hint="@string/naam"
-            android:inputType="text" />
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <TextView
             android:id="@+id/textViewBirthDate_RegisterActivity_xml"
@@ -39,8 +40,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:minHeight="48dp"
             android:onClick="setupDatePicker"
-            android:text="@string/yyyy_mm_dd" />
+            android:text="@string/yyyy_mm_dd"
+            tools:ignore="TextFields" />
 
         <TextView
             android:id="@+id/textViewGender_RegisterActivity_xml"
@@ -52,6 +55,7 @@
             android:id="@+id/spinner_RegisterActivity_xml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:textAlignment="viewStart" />
 
         <EditText
@@ -61,7 +65,8 @@
             android:autofillHints="postalAddress"
             android:ems="10"
             android:hint="@string/straat_huisnummer"
-            android:inputType="text" />
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/editTextCity_RegisterActivity_xml"
@@ -70,7 +75,8 @@
             android:autofillHints="postalAddress"
             android:ems="10"
             android:hint="@string/stad"
-            android:inputType="text" />
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/editTextUsername_RegisterActivity_xml"
@@ -79,7 +85,8 @@
             android:autofillHints="username"
             android:ems="10"
             android:hint="@string/gebruikersnaam"
-            android:inputType="text" />
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/editTextEmail_RegisterActivity_xml"
@@ -88,7 +95,8 @@
             android:autofillHints="emailAddress"
             android:ems="10"
             android:hint="@string/email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
 
         <TextView
             android:id="@+id/textViewPassword_RegisterActivity_xml"
@@ -102,7 +110,9 @@
             android:layout_height="wrap_content"
             android:autofillHints="password"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/button"

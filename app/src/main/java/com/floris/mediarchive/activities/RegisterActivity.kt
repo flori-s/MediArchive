@@ -1,6 +1,7 @@
 package com.floris.mediarchive.activities
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -61,6 +62,7 @@ class RegisterActivity : AppCompatActivity() {
                     streetEditText.error = "Street is required"
                     cityEditText.error = "City is required"
                 }
+
                 username.isEmpty() -> usernameEditText.error = "Username is required"
                 email.isEmpty() -> emailEditText.error = "Email is required"
                 password.isEmpty() -> passwordEditText.error = "Password is required"
@@ -117,6 +119,8 @@ class RegisterActivity : AppCompatActivity() {
                 // Success message
                 Toast.makeText(this, "User registered successfully", Toast.LENGTH_LONG).show()
 
+                // Go back to the login activity
+                startActivity(Intent(this, LoginActivity::class.java))
             } else {
                 // Show error message
                 when {

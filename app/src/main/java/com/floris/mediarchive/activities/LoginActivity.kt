@@ -99,4 +99,8 @@ class LoginActivity : AppCompatActivity() {
         }
         builder.show()
     }
+
+    fun register(view: View) {
+        startActivity(Intent(this, RegisterActivity::class.java))
+    }
 }
