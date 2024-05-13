@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class LoginActivity : AppCompatActivity() {
+    private val db = DBController.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -32,17 +34,22 @@ class LoginActivity : AppCompatActivity() {
                 println("Email: $email")
                 println("Password: $hasedPassword")
 
-            }else
-            {
+            } else {
                 when {
-                    !emailEdittext.text.toString().isValidEmail() -> emailEdittext.error = "Invalid email!"
-                    !passwordEditText.text.toString().isValidPassword() -> passwordEditText.error = "Invalid password!"
+                    !emailEdittext.text.toString().isValidEmail() -> emailEdittext.error =
+                        "Invalid email!"
+
+                    !passwordEditText.text.toString().isValidPassword() -> passwordEditText.error =
+                        "Invalid password!"
                 }
             }
         } else {
             when {
-                emailEdittext.text.toString().isEmpty() -> emailEdittext.error = "Email is required!"
-                passwordEditText.text.toString().isEmpty() -> passwordEditText.error = "Password is required!"
+                emailEdittext.text.toString().isEmpty() -> emailEdittext.error =
+                    "Email is required!"
+
+                passwordEditText.text.toString().isEmpty() -> passwordEditText.error =
+                    "Password is required!"
             }
         }
     }
