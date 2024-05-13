@@ -65,7 +65,9 @@
                 android:ems="10"
                 android:hint="@string/wachtwoord"
                 android:inputType="textPassword"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:drawableEnd="@drawable/ic_info"
+                android:onClick="showPasswordRequirements"/>
 
         </LinearLayout>
 
@@ -80,7 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="@string/inloggen" />
+                android:text="@string/inloggen"
+                android:onClick="login"/>
 
             <Button
                 android:id="@+id/button_registreren_LoginActivity_xml"
