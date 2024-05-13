@@ -20,16 +20,6 @@ fun String.toSHA256(): String {
 }
 
 /**
- * Capitalizes the first letter of each word in a string.
- *
- * This function splits the string into words (separated by spaces), capitalizes the first letter of each word,
- * and then joins the words back together with spaces in between.
- *
- * @return The string with the first letter of each word capitalized.
- */
-fun String.capitalizeWords(): String = split(" ").joinToString(" ") { it.capitalize() }
-
-/**
  * Checks if a string is a valid email address.
  *
  * This function uses a regular expression to check if the string matches the general structure of an email address.

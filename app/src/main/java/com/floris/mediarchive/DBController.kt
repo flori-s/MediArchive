@@ -42,6 +42,18 @@ class DBController private constructor() {
     }
 
     /**
+     * This function checks if a user exists in the database.
+     * @param username The username of the user.
+     * @param hasedPassword The hashed password of the user.
+     * @return True if the user exists, false otherwise.
+     */
+    fun checkUser(username: String, hasedPassword: String): Boolean {
+        val query = "SELECT * FROM account WHERE username = '$username' AND password = '$hasedPassword'"
+        val result = select(query)
+        return result?.next() ?: false
+    }
+
+    /**
      * This function executes a SELECT query on the database.
      * @param query The SELECT query to execute.
      * @return The result set of the query.
