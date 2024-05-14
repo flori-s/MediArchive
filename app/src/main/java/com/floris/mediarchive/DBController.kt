@@ -87,6 +87,43 @@ class DBController private constructor() {
         }
     }
 
+    fun getPatientInfo(patientId: Int): ResultSet? {
+        val query =
+            "SELECT p.name, p.birth_date, p.address, acc.email, pd.name AS 'dokterName', diagnosis, treatment_date    \n" +
+                    "FROM medical_record AS mr\n" +
+                    "JOIN doctor AS d ON mr.doctor_id = d.doctor_id \n" +
+                    "JOIN person AS pd ON d.doctor_id = pd.person_id\n" +
+                    "JOIN person AS p ON mr.patient_id = p.person_id\n" +
+                    "JOIN account AS acc ON p.person_id = acc.person_id\n" +
+                    "WHERE mr.patient_id = '$patientId'"
+        return select(query)
+    }
+
+    fun getPatientID(username: String): Any {
+        val query = "SELECT p.patient_id \n" +
+                "FROM patient AS p\n" +
+                "JOIN account AS a ON p.person_id = a.person_id\n" +
+                "WHERE a.username = '$username'"
+        val result = select(query)
+        return if (result?.next() == true) {
+            result.getInt("patient_id")
+        } else {
+            -1
+        }
+    }
+
+    fun getPersonID(username: String): Any {
+        val query = "SELECT person_id\n" +
+                "FROM account\n" +
+                "WHERE username = '$username'"
+        val result = select(query)
+        return if (result?.next() == true) {
+            result.getInt("person_id")
+        } else {
+            -1
+        }
+    }
+
     /**
      * This function executes a SELECT query on the database.
      * @param query The SELECT query to execute.

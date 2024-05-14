@@ -13,6 +13,8 @@ import com.floris.mediarchive.toSHA256
 
 class LoginActivity : AppCompatActivity() {
     val db = DBController.getInstance()
+    var personID = 0
+    var patientID = 0
     var failedAttempts = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,16 +50,32 @@ class LoginActivity : AppCompatActivity() {
             ) {
                 // Check if the email and password fields are valid
                 if (passwordEditText.text.toString().isValidPassword()) {
-                    val email = usernameEdittext.text.toString()
+                    val username = usernameEdittext.text.toString()
                     val hashedPassword = passwordEditText.text.toString().toSHA256()
 
                     // Check if the user exists in the database
-                    if (db.checkCredentials(email, hashedPassword)) {
+                    if (db.checkCredentials(username, hashedPassword)) {
                         // Reset the failed attempts counter
                         failedAttempts = 0
                         editor.putBoolean("isBlocked", false)
                         editor.apply()
 
+                        // Get the patientID of the user
+                        patientID = db.getPatientID(username) as Int
+
+                        println(patientID)
+
+                        // Get the personID of the user
+                        personID = db.getPersonID(username) as Int
+
+                        println(personID)
+
+                        // Put the patientID and personID in the SharedPreferences
+                        editor.putInt("patientID", patientID)
+                        editor.putInt("personID", personID)
+
+                        // Apply the changes
+                        editor.apply()
                         // Start the ViewActivity
                         startActivity(Intent(this, ViewActivity::class.java))
                     } else {
