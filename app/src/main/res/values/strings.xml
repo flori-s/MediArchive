@@ -20,4 +20,8 @@
         <item>F</item>
         <item>Other</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="hospital_information">Hospital Information</string>
 </resources>

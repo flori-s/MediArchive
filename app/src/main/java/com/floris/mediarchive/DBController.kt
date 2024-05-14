@@ -66,6 +66,18 @@ class DBController private constructor() {
         return result?.next() ?: false
     }
 
+    fun checkIfNurse(personID: Int): Boolean {
+        val query = "SELECT * FROM nurse WHERE nurse_id = '$personID'"
+        val result = select(query)
+        return result?.next() ?: false
+    }
+
+    fun checkIfDoctor(personID: Int): Boolean {
+        val query = "SELECT * FROM doctor WHERE doctor_id = '$personID'"
+        val result = select(query)
+        return result?.next() ?: false
+    }
+
     fun registerUser(
         name: String,
         birthDate: String,
@@ -86,6 +98,74 @@ class DBController private constructor() {
             Log.e("DBController", "Failed to insert person")
         }
     }
+
+    fun getPatientInfo(patientId: Int): ResultSet? {
+        val query =
+            "SELECT p.name, p.birth_date, p.address, acc.email, pd.name AS 'dokterName', diagnosis, treatment_date    \n" +
+                    "FROM medical_record AS mr\n" +
+                    "JOIN doctor AS d ON mr.doctor_id = d.doctor_id \n" +
+                    "JOIN person AS pd ON d.doctor_id = pd.person_id\n" +
+                    "JOIN person AS p ON mr.patient_id = p.person_id\n" +
+                    "JOIN account AS acc ON p.person_id = acc.person_id\n" +
+                    "WHERE mr.patient_id = '$patientId'"
+        return select(query)
+    }
+
+    fun getNurseInfo(personID: Int): ResultSet? {
+        val query =
+            "SELECT p.name, p.birth_date, p.gender, p.address, n.department, n.big_number\n" +
+                    "FROM nurse AS n\n" +
+                    "JOIN person AS p ON n.nurse_id = p.person_id\n" +
+                    "WHERE p.person_id = '$personID'"
+        return select(query)
+    }
+
+    fun getDoctorInfo(personID: Int): ResultSet? {
+        val query =
+            "SELECT p.name, p.birth_date, p.gender, p.address, d.specialization, d.years_of_experience\n" +
+                    "FROM doctor AS d\n" +
+                    "JOIN person AS p ON d.doctor_id = p.person_id\n" +
+                    "WHERE p.person_id = '$personID'"
+        return select(query)
+    }
+
+    fun getPatientID(username: String): Any {
+        val query = "SELECT p.patient_id \n" +
+                "FROM patient AS p\n" +
+                "JOIN account AS a ON p.person_id = a.person_id\n" +
+                "WHERE a.username = '$username'"
+        val result = select(query)
+        return if (result?.next() == true) {
+            result.getInt("patient_id")
+        } else {
+            -1
+        }
+    }
+
+    fun getPersonID(username: String): Any {
+        val query = "SELECT person_id\n" +
+                "FROM account\n" +
+                "WHERE username = '$username'"
+        val result = select(query)
+        return if (result?.next() == true) {
+            result.getInt("person_id")
+        } else {
+            -1
+        }
+    }
+
+    fun blockAccount(username: String) {
+        val query = "UPDATE account \n" +
+                "SET account.blokkering = CURRENT_TIMESTAMP\n" +
+                "WHERE username = '$username'"
+        if (update(query)) {
+            Log.d("DBController", "Account blocked")
+        } else {
+            Log.e("DBController", "Failed to block account")
+        }
+    }
+
+
 
     /**
      * This function executes a SELECT query on the database.
@@ -140,6 +220,17 @@ class DBController private constructor() {
             (stmt?.executeUpdate(query) ?: 0) > 0
         } catch (ex: Exception) {
             false
+        }
+    }
+
+    fun unblockAccount(username: String) {
+        val query = "UPDATE account \n" +
+                "SET account.blokkering = NULL\n" +
+                "WHERE username = '$username'"
+        if (update(query)) {
+            Log.d("DBController", "Account unblocked")
+        } else {
+            Log.e("DBController", "Failed to unblock account")
         }
     }
 
