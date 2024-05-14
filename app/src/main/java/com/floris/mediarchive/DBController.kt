@@ -54,30 +54,60 @@ class DBController private constructor() {
         return result?.next() ?: false
     }
 
+    /**
+     * This function checks if a username exists in the database.
+     * @param username The username to check.
+     * @return True if the username exists, false otherwise.
+     */
     fun checkUsername(username: String): Boolean {
         val query = "SELECT * FROM account WHERE username = '$username'"
         val result = select(query)
         return result?.next() ?: false
     }
 
+    /**
+     * This function checks if an email exists in the database.
+     * @param email The email to check.
+     * @return True if the email exists, false otherwise.
+     */
     fun checkEmail(email: String): Boolean {
         val query = "SELECT * FROM account WHERE email = '$email'"
         val result = select(query)
         return result?.next() ?: false
     }
 
+    /**
+     * This function checks if a person is a nurse in the database.
+     * @param personID The ID of the person to check.
+     * @return True if the person is a nurse, false otherwise.
+     */
     fun checkIfNurse(personID: Int): Boolean {
         val query = "SELECT * FROM nurse WHERE nurse_id = '$personID'"
         val result = select(query)
         return result?.next() ?: false
     }
 
+    /**
+     * This function checks if a person is a doctor in the database.
+     * @param personID The ID of the person to check.
+     * @return True if the person is a doctor, false otherwise.
+     */
     fun checkIfDoctor(personID: Int): Boolean {
         val query = "SELECT * FROM doctor WHERE doctor_id = '$personID'"
         val result = select(query)
         return result?.next() ?: false
     }
 
+    /**
+     * This function registers a user in the database.
+     * @param name The name of the user.
+     * @param birthDate The birth date of the user.
+     * @param gender The gender of the user.
+     * @param address The address of the user.
+     * @param username The username of the user.
+     * @param email The email of the user.
+     * @param password The password of the user.
+     */
     fun registerUser(
         name: String,
         birthDate: String,
@@ -99,6 +129,11 @@ class DBController private constructor() {
         }
     }
 
+    /**
+     * This function retrieves patient information from the database.
+     * @param patientId The ID of the patient.
+     * @return A ResultSet containing the patient information.
+     */
     fun getPatientInfo(patientId: Int): ResultSet? {
         val query =
             "SELECT p.name, p.birth_date, p.address, acc.email, pd.name AS 'dokterName', diagnosis, treatment_date    \n" +
@@ -111,6 +146,11 @@ class DBController private constructor() {
         return select(query)
     }
 
+    /**
+     * This function retrieves nurse information from the database.
+     * @param personID The ID of the person.
+     * @return A ResultSet containing the nurse information.
+     */
     fun getNurseInfo(personID: Int): ResultSet? {
         val query =
             "SELECT p.name, p.birth_date, p.gender, p.address, n.department, n.big_number\n" +
@@ -120,6 +160,11 @@ class DBController private constructor() {
         return select(query)
     }
 
+    /**
+     * This function retrieves doctor information from the database.
+     * @param personID The ID of the person.
+     * @return A ResultSet containing the doctor information.
+     */
     fun getDoctorInfo(personID: Int): ResultSet? {
         val query =
             "SELECT p.name, p.birth_date, p.gender, p.address, d.specialization, d.years_of_experience\n" +
@@ -129,6 +174,11 @@ class DBController private constructor() {
         return select(query)
     }
 
+    /**
+     * This function retrieves the patient ID associated with a username from the database.
+     * @param username The username.
+     * @return The patient ID if found, -1 otherwise.
+     */
     fun getPatientID(username: String): Any {
         val query = "SELECT p.patient_id \n" +
                 "FROM patient AS p\n" +
@@ -142,6 +192,11 @@ class DBController private constructor() {
         }
     }
 
+    /**
+     * This function retrieves the person ID associated with a username from the database.
+     * @param username The username.
+     * @return The person ID if found, -1 otherwise.
+     */
     fun getPersonID(username: String): Any {
         val query = "SELECT person_id\n" +
                 "FROM account\n" +
@@ -154,6 +209,10 @@ class DBController private constructor() {
         }
     }
 
+    /**
+     * This function blocks an account in the database.
+     * @param username The username of the account to block.
+     */
     fun blockAccount(username: String) {
         val query = "UPDATE account \n" +
                 "SET account.blokkering = CURRENT_TIMESTAMP\n" +
@@ -164,8 +223,6 @@ class DBController private constructor() {
             Log.e("DBController", "Failed to block account")
         }
     }
-
-
 
     /**
      * This function executes a SELECT query on the database.
@@ -223,6 +280,10 @@ class DBController private constructor() {
         }
     }
 
+    /**
+     * This function unblocks an account in the database.
+     * @param username The username of the account to unblock.
+     */
     fun unblockAccount(username: String) {
         val query = "UPDATE account \n" +
                 "SET account.blokkering = NULL\n" +
@@ -233,7 +294,6 @@ class DBController private constructor() {
             Log.e("DBController", "Failed to unblock account")
         }
     }
-
     companion object {
         /**
          * The singleton instance of DBController.

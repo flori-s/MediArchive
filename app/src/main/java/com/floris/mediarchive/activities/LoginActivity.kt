@@ -11,17 +11,33 @@ import com.floris.mediarchive.R
 import com.floris.mediarchive.isValidPassword
 import com.floris.mediarchive.toSHA256
 
+/**
+ * Activity for user login.
+ * It handles user input validation and communicates with the database to authenticate the user.
+ * @author Floris
+ */
 class LoginActivity : AppCompatActivity() {
+    // Database controller instance
     val db = DBController.getInstance()
+
+    // User information variables
     var personID = 0
     var patientID = 0
     var failedAttempts = 0
 
+    /**
+     * Called when the activity is starting.
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
     }
 
+    /**
+     * Handles the login process when the login button is clicked.
+     * @param view The view that was clicked.
+     */
     fun login(view: View) {
         // Get the SharedPreferences
         val sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
@@ -100,6 +116,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Shows the password requirements when the info button is clicked.
+     * @param view The view that was clicked.
+     */
     fun showPasswordRequirements(view: View) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Wachtwoord vereisten")
@@ -116,6 +136,10 @@ class LoginActivity : AppCompatActivity() {
         builder.show()
     }
 
+    /**
+     * Starts the RegisterActivity when the register button is clicked.
+     * @param view The view that was clicked.
+     */
     fun register(view: View) {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
