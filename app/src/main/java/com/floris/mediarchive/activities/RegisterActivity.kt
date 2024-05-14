@@ -17,8 +17,15 @@ import com.floris.mediarchive.isValidPassword
 import com.floris.mediarchive.toSHA256
 import java.util.Calendar
 
+/**
+ * Activity for user registration.
+ * It handles user input validation and communicates with the database to register a new user.
+ * @author Floris
+ */
 class RegisterActivity : AppCompatActivity() {
+    // Database controller instance
     val db = DBController.getInstance()
+    // User information variables
     var name = ""
     var birthDate = ""
     var gender = ""
@@ -27,6 +34,10 @@ class RegisterActivity : AppCompatActivity() {
     var email = ""
     var password = ""
 
+    /**
+     * Called when the activity is starting.
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -34,6 +45,10 @@ class RegisterActivity : AppCompatActivity() {
         setupGenderSpinner()
     }
 
+    /**
+     * Handles the registration process when the register button is clicked.
+     * @param view The view that was clicked.
+     */
     fun register(view: View) {
         // Get the fields
         val nameEditText: EditText = findViewById(R.id.editTextName_RegisterActivity_xml)
@@ -53,6 +68,10 @@ class RegisterActivity : AppCompatActivity() {
         password = passwordEditText.text.toString()
 
         // Check if the fields are not empty
+        // If they are, show error messages
+        // If they are not, validate the email and password, and register the user
+        // After successful registration, clear the fields and show a success message
+        // Then, go back to the login activity
         if (name.isEmpty() || birthDate.isEmpty() || address.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             // Show error message
             when {
@@ -131,6 +150,9 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Sets up the gender spinner.
+     */
     fun setupGenderSpinner() {
         val spinner: Spinner = findViewById(R.id.spinner_RegisterActivity_xml)
         ArrayAdapter.createFromResource(
@@ -158,6 +180,10 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Sets up the date picker when the date EditText is clicked.
+     * @param view The view that was clicked.
+     */
     fun setupDatePicker(view: View) {
         val editText = view as EditText
         editText.isFocusable = false
@@ -169,6 +195,10 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Shows the date picker dialog.
+     * @param editText The EditText where the selected date will be displayed.
+     */
     fun showDatePicker(editText: EditText) {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)

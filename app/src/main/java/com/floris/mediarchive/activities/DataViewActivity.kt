@@ -14,6 +14,7 @@ import com.floris.mediarchive.fragments.PatientFragment
 /**
  * DataViewActivity is an activity that displays different fragments based on the role of the person logged in.
  * It checks if the person is a nurse, doctor, or patient and displays the corresponding fragment.
+ * @author Floris
  */
 class DataViewActivity : AppCompatActivity() {
     /**
