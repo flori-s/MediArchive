@@ -59,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
                         failedAttempts = 0
                         editor.putBoolean("isBlocked", false)
                         editor.apply()
+                        db.unblockAccount(username)
 
                         // Get the patientID of the user
                         patientID = db.getPatientID(username) as Int
@@ -78,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
                         // Increment the failed attempts counter
                         failedAttempts++
                         if (failedAttempts >= 3) {
+                            db.blockAccount(username)
                             editor.putBoolean("isBlocked", true)
                             editor.apply()
                         }

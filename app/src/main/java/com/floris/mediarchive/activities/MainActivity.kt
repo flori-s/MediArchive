@@ -9,7 +9,6 @@ import com.floris.mediarchive.DBController
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
         // Get the instance of the database controller
         DBController.getInstance()

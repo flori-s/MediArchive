@@ -154,6 +154,19 @@ class DBController private constructor() {
         }
     }
 
+    fun blockAccount(username: String) {
+        val query = "UPDATE account \n" +
+                "SET account.blokkering = CURRENT_TIMESTAMP\n" +
+                "WHERE username = '$username'"
+        if (update(query)) {
+            Log.d("DBController", "Account blocked")
+        } else {
+            Log.e("DBController", "Failed to block account")
+        }
+    }
+
+
+
     /**
      * This function executes a SELECT query on the database.
      * @param query The SELECT query to execute.
@@ -207,6 +220,17 @@ class DBController private constructor() {
             (stmt?.executeUpdate(query) ?: 0) > 0
         } catch (ex: Exception) {
             false
+        }
+    }
+
+    fun unblockAccount(username: String) {
+        val query = "UPDATE account \n" +
+                "SET account.blokkering = NULL\n" +
+                "WHERE username = '$username'"
+        if (update(query)) {
+            Log.d("DBController", "Account unblocked")
+        } else {
+            Log.e("DBController", "Failed to unblock account")
         }
     }
 
