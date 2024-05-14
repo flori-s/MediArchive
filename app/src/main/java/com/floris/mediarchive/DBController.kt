@@ -66,6 +66,18 @@ class DBController private constructor() {
         return result?.next() ?: false
     }
 
+    fun checkIfNurse(personID: Int): Boolean {
+        val query = "SELECT * FROM nurse WHERE nurse_id = '$personID'"
+        val result = select(query)
+        return result?.next() ?: false
+    }
+
+    fun checkIfDoctor(personID: Int): Boolean {
+        val query = "SELECT * FROM doctor WHERE doctor_id = '$personID'"
+        val result = select(query)
+        return result?.next() ?: false
+    }
+
     fun registerUser(
         name: String,
         birthDate: String,
@@ -96,6 +108,24 @@ class DBController private constructor() {
                     "JOIN person AS p ON mr.patient_id = p.person_id\n" +
                     "JOIN account AS acc ON p.person_id = acc.person_id\n" +
                     "WHERE mr.patient_id = '$patientId'"
+        return select(query)
+    }
+
+    fun getNurseInfo(personID: Int): ResultSet? {
+        val query =
+            "SELECT p.name, p.birth_date, p.gender, p.address, n.department, n.big_number\n" +
+                    "FROM nurse AS n\n" +
+                    "JOIN person AS p ON n.nurse_id = p.person_id\n" +
+                    "WHERE p.person_id = '$personID'"
+        return select(query)
+    }
+
+    fun getDoctorInfo(personID: Int): ResultSet? {
+        val query =
+            "SELECT p.name, p.birth_date, p.gender, p.address, d.specialization, d.years_of_experience\n" +
+                    "FROM doctor AS d\n" +
+                    "JOIN person AS p ON d.doctor_id = p.person_id\n" +
+                    "WHERE p.person_id = '$personID'"
         return select(query)
     }
 

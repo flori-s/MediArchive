@@ -63,12 +63,8 @@ class LoginActivity : AppCompatActivity() {
                         // Get the patientID of the user
                         patientID = db.getPatientID(username) as Int
 
-                        println(patientID)
-
                         // Get the personID of the user
                         personID = db.getPersonID(username) as Int
-
-                        println(personID)
 
                         // Put the patientID and personID in the SharedPreferences
                         editor.putInt("patientID", patientID)
@@ -77,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
                         // Apply the changes
                         editor.apply()
                         // Start the ViewActivity
-                        startActivity(Intent(this, ViewActivity::class.java))
+                        startActivity(Intent(this, DataViewActivity::class.java))
                     } else {
                         // Increment the failed attempts counter
                         failedAttempts++
