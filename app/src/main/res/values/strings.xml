@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">MediArchive</string>
+    <string name="registreren">Registreren</string>
+    <string name="inloggen">Inloggen</string>
+    <string name="wachtwoord">Wachtwoord</string>
+    <string name="email">Email</string>
+    <string name="logo">Logo</string>
+    <string name="brandname">MediArchive</string>
+    <string name="username">Username</string>
+    <string name="datum">Datum</string>
+    <string name="naam">Naam</string>
+    <string name="geslacht">Geslacht</string>
+    <string name="geboortedatum">Geboortedatum</string>
+    <string name="straat_huisnummer">Straat + huisnummer</string>
+    <string name="stad">Stad</string>
+    <string name="gebruikersnaam">Gebruikersnaam</string>
+    <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+    <string-array name="gender_items">
+        <item>M</item>
+        <item>F</item>
+        <item>Other</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="hospital_information">Hospital Information</string>
 </resources>
